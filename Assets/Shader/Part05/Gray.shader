@@ -3,6 +3,7 @@ Shader "Custom/Gray"
     Properties
     {
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _ColorToGray ()
     }
     SubShader
     {
