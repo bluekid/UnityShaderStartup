@@ -1,4 +1,4 @@
-Shader "Custom/TextureUV"
+Shader "Custom/TextureU"
 {
     Properties
     {
@@ -34,7 +34,7 @@ Shader "Custom/TextureUV"
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
-            o.Emission = float3(IN.uv_MainTex.x, IN.uv_MainTex.y, 0);
+            o.Emission = IN.uv_MainTex.x;
             o.Alpha = c.a;
         }
         ENDCG
