@@ -1,8 +1,9 @@
-Shader "Custom/Gray"
+Shader "Custom/GrayScale"
 {
     Properties
     {
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _lerpValue ("GrayScale", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -17,6 +18,8 @@ Shader "Custom/Gray"
         #pragma target 3.0
 
         sampler2D _MainTex;
+
+        fixed _lerpValue;
 
         struct Input
         {
@@ -35,14 +38,16 @@ Shader "Custom/Gray"
         {
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
 
-            //1. ì»¬ëŸ¬ì˜ í‰ê· ì„ êµ¬í•˜ëŠ” ë°©ë²•
+            //1. ÄÃ·¯ÀÇ Æò±ÕÀ» ±¸ÇÏ´Â ¹æ¹ı
             //o.Albedo = ( c.r + c.g + c.b ) / 3;
 
-            //2. r, g, b ì— ì§€ì •ëœ ìƒìˆ˜ ê°’ì„ ê³±í•´ì£¼ëŠ” ë°©ì‹
+            //2. r, g, b ¿¡ ÁöÁ¤µÈ »ó¼ö °ªÀ» °öÇØÁÖ´Â ¹æ½Ä
             //o.Albedo = c.r * 0.3 + c.g * 0.59 + c.b * 0.11;
 
-            //3. dot ì—°ì‚° 
-            o.Albedo = dot(c.rgb, float3(0.3, 0.59, 0.11));
+            //3. dot ¿¬»ê 
+            //o.Albedo = dot(c.rgb, float3(0.3, 0.59, 0.11));
+
+            o.Albedo = lerp(c.rgb, dot(c.rgb, float3(0.3, 0.59, 0.11)), _lerpValue);
             o.Alpha = c.a;
         }
         ENDCG

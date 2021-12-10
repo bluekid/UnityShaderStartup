@@ -16,7 +16,14 @@ public class TextureLerp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _material = _renderMesh.GetComponent<Material>();
+        if ( _renderMesh != null )
+        {
+            List<Material> m = new List<Material>();
+            _renderMesh.GetMaterials( m );
+            if ( m.Count > 0 )
+                _material = m[0];
+        }
+
         _isPlus = true;
     }
 
@@ -32,10 +39,9 @@ public class TextureLerp : MonoBehaviour
             _renderMesh.GetMaterials( m );
             if ( m.Count > 0 )
                 _material = m[0];
-        }
 
-        if ( _material == null )
             return;
+        }
 
         if ( _lerpValue >= 1.0f )
         {
@@ -52,13 +58,9 @@ public class TextureLerp : MonoBehaviour
         _lerpTIme += Time.deltaTime;
 
         if ( _isPlus )
-		{
             _lerpValue = Mathf.Lerp( 0, 1, _lerpTIme );
-        }
         else
-		{
             _lerpValue = Mathf.Lerp( 1, 0, _lerpTIme );
-        }
 
         _material.SetFloat( "_lerpValue", _lerpValue );
     }
