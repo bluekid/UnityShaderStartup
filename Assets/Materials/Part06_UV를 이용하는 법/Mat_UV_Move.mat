@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_TextureV
-  m_Shader: {fileID: 4800000, guid: 98d111da90af7a049a568f3d753bf048, type: 3}
+  m_Name: Mat_UV_Move
+  m_Shader: {fileID: 4800000, guid: f8080d76c8a1d6348b77b2ff32b833bf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -68,11 +68,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PlusValue: 0.019
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _UMove: 0
     - _UVSec: 0
+    - _VMove: 0
     - _ZWrite: 1
+    - _uMove: 0
+    - _vMove: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
